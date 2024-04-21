@@ -69,6 +69,6 @@ const styles = StyleSheet.create({
   },  
   selectedText: {
     fontSize: 18,
-    fontWeight: "bond"
+    fontWeight: "bold"
   },
 });

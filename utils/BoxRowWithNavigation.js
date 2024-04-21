@@ -1,7 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export const BoxRowWithNavigation = ({ tileNavigations }) => {
   const navigation = useNavigation();
@@ -13,34 +12,62 @@ export const BoxRowWithNavigation = ({ tileNavigations }) => {
 
   return (
     <>
-      <View className="pl-6 pr-6 flex flex-row justify-evenly pb-2">
-        <View className="mb-2 flex-1 h-24 mr-2 bg-red-500 rounded-3xl">
-          <TouchableOpacity
-            className="flex-1 h-32"
-            onPress={() => navigateTo("Component1")}
-          ></TouchableOpacity>
-        </View>
-        <View className="mb-2 flex-1 h-24 ml-2 bg-red-500 rounded-3xl">
-          <TouchableOpacity
-            className="h-32 w-44"
-            onPress={() => navigateTo("Component2Stack")}
-          />
-        </View>
+      <View style={styles.row}>
+        <TouchableOpacity
+          style={{...styles.box,backgroundColor:"teal"}}
+          onPress={() => navigateTo("Component1")}
+        >
+          <Text style={styles.text}>JS</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{...styles.box,backgroundColor:"pink"}}
+          onPress={() => navigateTo("Component2Stack")}
+        >
+          <Text style={styles.text}>RN</Text>
+        </TouchableOpacity>
       </View>
-      <View className="pl-6 pr-6 flex flex-row justify-evenly pb-4">
-        <View className="mb-2 flex-1 h-24 mr-2 bg-red-500 rounded-3xl">
-          <TouchableOpacity
-            className="flex-1 h-32"
-            onPress={() => navigateTo("Component1")}
-          ></TouchableOpacity>
-        </View>
-        <View className="mb-2 flex-1 h-24 ml-2 bg-red-500 rounded-3xl">
-          <TouchableOpacity
-            className="h-32 w-44"
-            onPress={() => navigateTo("Component2Stack")}
-          />
-        </View>
+
+      <View style={styles.row}>
+        <TouchableOpacity
+          style={{...styles.box,backgroundColor:"purple"}}
+          onPress={() => navigateTo("Component1")}
+        >
+          <Text style={styles.text}>JS</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{...styles.box,backgroundColor:"orange"}}
+          onPress={() => navigateTo("Component2Stack")}
+        >
+          <Text style={styles.text}>RN</Text>
+        </TouchableOpacity>
       </View>
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 16,
+    marginBottom: 8,
+  },
+  box: {
+    flex: 1,
+    height: 96,
+    borderRadius: 20,
+    marginLeft: 5,
+    marginRight: 5,
+    display:"flex",
+    padding:15,
+    backgroundColor: "red",
+    justifyContent: "flex-end",
+  },
+  text: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "white",
+    display:"flex",
+    justifyContent:"flex-end"
+  },
+});

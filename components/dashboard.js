@@ -12,12 +12,16 @@ const Dashboard = ({ question, index }) => {
 
   return (
     <>
-      <View className="flex flex-row pt-8 pb-8 pl-8">
+      <View className="flex flex-row pt-10 pb-8 pl-8">
         <Text className="text-3xl">Hello, </Text>
         <Text className="text-3xl font-semibold">Rahul!</Text>
       </View>
+      <View className="pt-4 pb-2">
       <BoxRowWithNavigation />
+      </View>
+      <View className="pt-4 pb-2">
       <HorizontalList/>
+      </View>
       <BigBoxWithNavigation />
     </>
   );
