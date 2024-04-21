@@ -1,5 +1,7 @@
+// import 'react-native-gesture-handler';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import Component2Screen from "./components/Component2Screen.js";
 
 import "expo-dev-client";
@@ -35,10 +37,14 @@ const MyTheme = {
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 const Component2Stack = () => (
-  <Stack.Navigator screenOptions={{
-    cardStyle: { backgroundColor: "blue" },}}>
+  <Stack.Navigator
+    screenOptions={{
+      cardStyle: { backgroundColor: "blue" },
+    }}
+  >
     <Stack.Screen name="Component2" component={Component2Screen} />
     <Stack.Screen name="Answer" component={AnswerComponent} />
   </Stack.Navigator>
@@ -52,17 +58,15 @@ export default function App() {
   const [currentTab, setCurrentTab] = useState("Component1");
   const [isLoading, setIsLoading] = useState(false);
 
-
-
   const appContextValue = {
     isLoading,
-    setIsLoading
+    setIsLoading,
   };
 
   const handleTabPress = (e) => {
     const tabName = e.target.split("-")[0];
     setCurrentTab(tabName);
-    console.log("tab pressed")
+    console.log("tab pressed");
     // Check if the tab needs to show a rewarded ad
     switch (tabName) {
       case "Component1":
@@ -122,23 +126,17 @@ export default function App() {
   return (
     <AppContext.Provider value={appContextValue}>
       <NavigationContainer theme={MyTheme}>
-        <Stack.Navigator
-          // screenOptions={({ route }) => ({
-          //   tabBarActiveBackgroundColor: "blue",
-          //   headerTitle: "",
-          //   headerStyle: { height: "10%" },
-          // })}
-          // screenListeners={{
-          //   tabPress: handleTabPress,
-          // }}
+        <Drawer.Navigator
+          screenOptions={({ route }) => ({
+            drawerActiveBackgroundColor: "gray",
+            headerTitle: "",
+            headerStyle: { height: "10%" },
+          })}
         >
-          <Stack.Screen name="Component1" component={Dashboard}/>
-          <Stack.Screen name="Component2Stack" component={Component2Stack} />
-          <Stack.Screen name="Component3" component={Component3Screen} />
-          <Stack.Screen name="Component4" component={Component4Screen} />
-        </Stack.Navigator>
+          <Drawer.Screen name="Dashboard" component={Dashboard} />
+          <Drawer.Screen name="Settings" component={Dashboard} />
+        </Drawer.Navigator>
       </NavigationContainer>
     </AppContext.Provider>
   );
 }
-
