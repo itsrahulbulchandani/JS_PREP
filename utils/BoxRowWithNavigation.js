@@ -30,13 +30,13 @@ export const BoxRowWithNavigation = ({ tileNavigations }) => {
       <View style={styles.row}>
         <TouchableOpacity
           style={{...styles.box,backgroundColor:"purple"}}
-          onPress={() => navigateTo("Component1")}
+          onPress={() => navigateTo("Component3")}
         >
           <Text style={styles.text}>JS</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={{...styles.box,backgroundColor:"orange"}}
-          onPress={() => navigateTo("Component2Stack")}
+          onPress={() => navigateTo("Component4")}
         >
           <Text style={styles.text}>RN</Text>
         </TouchableOpacity>

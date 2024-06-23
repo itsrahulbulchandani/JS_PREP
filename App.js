@@ -20,13 +20,13 @@ import AppContext from "./context.js";
 import { useColorScheme } from "react-native";
 import Dashboard from "./components/dashboard.js";
 
-// const adUnitId = __DEV__
-//   ? TestIds.REWARDED
-//   : "ca-app-pub-1713281088911988~1804179792";
+const adUnitId = __DEV__
+  ? TestIds.REWARDED
+  : "ca-app-pub-1713281088911988~1804179792";
 
-// const rewarded = RewardedAd.createForAdRequest(adUnitId, {
-//   keywords: ["fashion", "clothing"],
-// });
+const rewarded = RewardedAd.createForAdRequest(adUnitId, {
+  keywords: ["fashion", "clothing"],
+});
 const MyTheme = {
   ...DefaultTheme,
   colors: {
@@ -80,13 +80,13 @@ export default function App() {
         break;
       case "Component3":
         if (!isComponent3Unlocked) {
-          handleRewardedAd();
+          //handleRewardedAd();
           setIsComponent3Unlocked(true);
         }
         break;
       case "Component4":
         if (!isComponent4Unlocked) {
-          handleRewardedAd();
+          //handleRewardedAd();
           setIsComponent4Unlocked(true);
         }
         break;
@@ -123,19 +123,32 @@ export default function App() {
     //showAd();
   };
 
+  const DrawerNavigator = () => {
+    return (
+      <Drawer.Navigator
+        screenOptions={({ route }) => ({
+          drawerActiveBackgroundColor: "gray",
+          headerTitle: "",
+          headerStyle: { height: "10%" },
+        })}
+      >
+        <Drawer.Screen name="Dashboard" component={Dashboard} />
+        <Drawer.Screen name="Settings" component={Dashboard} />
+      </Drawer.Navigator>
+    );
+  };
+
   return (
     <AppContext.Provider value={appContextValue}>
       <NavigationContainer theme={MyTheme}>
-        <Drawer.Navigator
-          screenOptions={({ route }) => ({
-            drawerActiveBackgroundColor: "gray",
-            headerTitle: "",
-            headerStyle: { height: "10%" },
-          })}
-        >
-          <Drawer.Screen name="Dashboard" component={Dashboard} />
-          <Drawer.Screen name="Settings" component={Dashboard} />
-        </Drawer.Navigator>
+        <Stack.Navigator headerMode="none">
+          <Stack.Screen name="DrawerNavigator" component={DrawerNavigator} />
+          {/* Additional app-level screens outside of the drawer */}
+          <Stack.Screen name="Component1" component={Component1Screen} />
+          <Stack.Screen name="Component2Stack" component={Component2Stack} />
+          <Stack.Screen name="Component3" component={Component3Screen} />
+          <Stack.Screen name="Component4" component={Component4Screen} />
+        </Stack.Navigator>
       </NavigationContainer>
     </AppContext.Provider>
   );

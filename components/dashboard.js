@@ -3,12 +3,19 @@ import { View, Text, StyleSheet, Dimensions, ScrollView } from "react-native";
 import { BoxRowWithNavigation } from "../utils/BoxRowWithNavigation";
 import { BigBoxWithNavigation } from "../utils/BigBoxWithNavigation";
 import HorizontalList from "../utils/HorizontalList";
+import { createStackNavigator } from "@react-navigation/stack";
+import Component2Screen from "./Component2Screen";
+import Component3Screen from "./Component3Screen";
+import Component4Screen from "./Component4Screen";
 
 const windowHeight = Dimensions.get("window").height;
 const square_box_md = "mb-2 h-40 bg-pink-500 rounded-3xl";
 
 
 const Dashboard = ({ question, index }) => {
+
+
+  const Stack = createStackNavigator();
 
   return (
     <>
@@ -17,10 +24,10 @@ const Dashboard = ({ question, index }) => {
         <Text className="text-3xl font-semibold">Rahul!</Text>
       </View>
       <View className="pt-4 pb-2">
-      <BoxRowWithNavigation />
+        <BoxRowWithNavigation />
       </View>
       <View className="pt-4 pb-2">
-      <HorizontalList/>
+        <HorizontalList />
       </View>
       <BigBoxWithNavigation />
     </>
